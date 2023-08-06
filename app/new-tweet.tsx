@@ -41,12 +41,12 @@ const {createTweet}=useTweetsApi();
         console.log("Error",e);
        }   
     }
-    return(
+    return( 
 <SafeAreaView style={{flex:1,backgroundColor:'white'}}>
-      <View style={styles.container}>
-        <View style = {styles.buttonContainer}>
+      <View style={styles.container}> 
+        <View style = {styles.buttonContainer}> 
           <Link href="../" style={{ fontSize: 18 }}>  Cancel </Link>
-            {isLoading && <ActivityIndicator/>}
+            {isLoading && <ActivityIndicator/>} 
           <Pressable onPress={onTweetPress} style={styles.button}> 
                 <Text style={styles.buttonText}>
                     Tweet 
@@ -57,7 +57,7 @@ const {createTweet}=useTweetsApi();
         <View style={styles.inputContainer}>
             <Image src = {user.image} style = {styles.image}  />
             <TextInput 
-            value={text}
+            value={text} 
             onChangeText={setText}
             placeholder="What's happening?" 
             multiline 

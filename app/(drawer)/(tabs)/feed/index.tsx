@@ -7,6 +7,7 @@ import {Link} from 'expo-router';
 import { useEffect,useState } from 'react';
 import { useTweetsApi } from '../../../../lib/api/tweets';
 import { useQuery } from '@tanstack/react-query';
+import User from '../../../../assets/assets/data/users';
 
 export default function FeedScreen() {
  
@@ -34,13 +35,22 @@ if(error){
   return <Text>{error.message}</Text>
 }
 
+function random(){
+  return Math.ceil(Math.random() * (User.length - 0)) + 0 - 1;
+}
+
+
 
   return (
     <View style={styles.page}> 
-      <FlatList 
-      data={data} 
-      renderItem={({item})=> <Tweet tweet={item}/>
-      }/>
+      <FlatList
+     data={data}
+     renderItem={({ item }) => {
+      let no = random(); // Call the random function here for each item
+      return <Tweet tweet={item} num={no}/>;
+  }}
+/>
+
               <Link href="/new-tweet" asChild>
                 <Entypo 
                 name="plus" 

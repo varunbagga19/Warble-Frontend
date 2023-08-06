@@ -11,18 +11,25 @@ import {
 import {TweetType} from "../types";
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import tweets from '../assets/assets/data/tweets';
+import User from '../assets/assets/data/users';
+import { log } from 'react-native-reanimated';
 
-const tweet1 = tweets[0];
 
-type TweetProps = {
-    tweet: TweetType;
+
+
+function random(){
+  return Math.ceil(Math.random() * (User.length - 0)) + 0 - 1;
 }
-const UserProfileHeader = ({ tweet }:TweetProps) => {
-  const router = useRouter();
 
+
+
+const UserProfileHeader = ({ tweet, nu }) => {
+  const router = useRouter();
+  // const no = random();
+  console.log(nu,"nnnnnuuununununununununu");
   return (
     <View>
-      <ImageBackground source={{ uri: tweet1.image }} style={styles.cover}>
+      <ImageBackground source={{ uri: User[nu].image }} style={styles.cover}>
         <View style={styles.overlay} />
 
         <SafeAreaView
@@ -67,14 +74,14 @@ const UserProfileHeader = ({ tweet }:TweetProps) => {
             marginTop: -50,
           }}
         >
-          <Image src={tweet1.user.image} style={styles.userImage} />
+          <Image src={User[nu].image} style={styles.userImage} />
           <FontAwesome name="share-square-o" size={24} color="royalblue" />
         </View>
 
         <Text style={{ fontSize: 20, fontWeight: '600', marginVertical: 5 }}>
           {tweet.user.name}
         </Text>
-        <Text style={{ color: 'gray', marginBottom: 10 }}>@varun</Text>
+        <Text style={{ color: 'gray', marginBottom: 10 }}></Text>
         <Text style={{ lineHeight: 20 }} numberOfLines={5}>
          {tweet.content}
         </Text>

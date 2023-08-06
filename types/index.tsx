@@ -15,3 +15,7 @@ export type User = {
     numberOfLikes?: number,
     impressions?: number,
     }
+
+    export type Number={
+        num:number;
+    }

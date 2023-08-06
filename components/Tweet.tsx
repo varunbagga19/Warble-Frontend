@@ -1,18 +1,27 @@
 import { View,Text,Image,StyleSheet,Pressable,ImageBackground} from "react-native";
-import {TweetType} from "../types";
+import {TweetType,Number} from "../types";
 import { Entypo } from '@expo/vector-icons';
 import IconButton from "./IconButon";
 import { Link } from "expo-router";
 import tweets from'../assets/assets/data/tweets';
-
+import User from "../assets/assets/data/users";
 const tweet1 = tweets[0];
 
-type TweetProps = {
-    tweet: TweetType;
-}
-const Tweet=({ tweet }:TweetProps)=>{
+// type TweetProps = {
+//     tweet: TweetType;
+// }
+
+
+// `/feed/tweet/${tweet.id}` 
+const Tweet=({ tweet, num })=>{
     return (
-      <Link href={`/feed/tweet/${tweet.id}`} asChild>
+      <Link href={{
+        pathname:"/feed/tweet/[id]",
+        params:{
+          id:tweet.id,
+          no:num
+        }
+        }} asChild>
         <Pressable >
           <View style={{
             borderColor: 'black',
@@ -29,7 +38,7 @@ const Tweet=({ tweet }:TweetProps)=>{
             
             {/* Image */}
             <View style={{ marginLeft:10, paddingVertical: 3 }}>
-              <Image source={{ uri: tweet1.image }} style={styles.userImage} />
+              <Image source={{ uri: User[num].image }} style={styles.userImage} />
             </View>
             
             {/* Name & handle */}
@@ -46,8 +55,8 @@ const Tweet=({ tweet }:TweetProps)=>{
             </View>
             
             <View style={{ alignItems: 'center', justifyContent: 'center',paddingRight:5 }}>
-              <Text style={styles.nameText}>{tweet1.user.name}</Text>
-              <Text style={styles.handleText}>@varun</Text>
+              <Text style={styles.nameText}>{User[num].name}</Text>
+              <Text style={styles.handleText}>{User[num].email}</Text>
             </View>
             
         </View>
